@@ -15,8 +15,24 @@ module.exports = (speakerService) => {
     return;
   });
   // eslint-disable-next-line no-unused-vars
-  router.get('/:shortname', function (req, res, next) {
-    res.send(`Detail page of ${req.params.shortname}`);
+  router.get('/:shortname', async function (req, res, next) {
+    const { shortname } = req.params;
+    if (typeof shortname !== 'string') {
+      next(new Error('name params must be string😜'));
+    }
+    const speaker = await speakerService.getSpeaker(shortname);
+    const artworks = await speakerService.getArtworkForSpeaker(shortname);
+    console.log(artworks);
+    res.render('layout', {
+      title: 'Corps',
+      pageName: 'ForteNight',
+      template: 'speaker',
+      assets: res.locals.speakers,
+      data: {
+        ...speaker,
+        artworks: artworks ? artworks : [],
+      },
+    });
     return;
   });
   return router;
