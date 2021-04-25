@@ -22,7 +22,7 @@ module.exports = (speakerService) => {
     }
     const speaker = await speakerService.getSpeaker(shortname);
     const artworks = await speakerService.getArtworkForSpeaker(shortname);
-    console.log(artworks);
+
     res.render('layout', {
       title: 'Corps',
       pageName: 'ForteNight',

@@ -7,9 +7,11 @@ const { FeedbackService, SpeakerService } = require('./services/index.service');
 const feedbackService = new FeedbackService('../data/feedback.data.json');
 const speakerService = new SpeakerService('../data/speakers.data.json');
 const bodyParser = require('body-parser');
+const morgan = require('morgan');
 const app = express();
 const port = 3000;
 
+app.use(morgan('dev'));
 app.set('trust proxy', 1);
 app.use(
   cookieSession({ name: 'session124', keys: ['q4tgfsg4pthk9344@$43', '2390r#!@$!$kdmbksmbs,f'] })

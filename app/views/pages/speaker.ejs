@@ -5,13 +5,13 @@
         <h1 class="speakerslist-title"><%=data.title%></h1>
         <div class="speakerslist-name">
           with
-          <a href="/<%=data.name%>"><%=data.name%>Post</a>
+          <a href="/speakers/<%=data.shortname%>"><%=data.name%></a>
         </div>
         <p class="speakerslist-info mt-2">
-          <a href="/<%=data.name%>"> </a>
+          <a href="/<%=data.shortname%>"> </a>
           <img
             class="speakerslist-img img-fluid"
-            src="/images/speakers/<%-`${data.shortname}`%>_tn.jpg"
+            src="/images/speakers/<%-`${data.shortname}`%>.jpg"
             alt="Photo of <%-data.name%> Post"
           />
         </p>
