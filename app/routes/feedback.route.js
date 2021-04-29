@@ -2,6 +2,8 @@
 const express = require('express');
 const router = express.Router();
 const { check, validationResult } = require('express-validator');
+const helpers = require('../helpers/feedback.validator');
+
 module.exports = (feedbackService) => {
   // eslint-disable-next-line no-unused-vars
   router.get('/', async function (req, res, next) {
@@ -15,22 +17,17 @@ module.exports = (feedbackService) => {
     return;
   });
   // eslint-disable-next-line no-unused-vars
-  router.post(
-    '/api',
-    check('email').normalizeEmail().isEmail().withMessage('must be at least 5 chars long'),
-    check('name').isString().trim(),
-    check('title').isString().trim(),
-    !check('message').isEmpty(),
-    function (req, res, next) {
-      const errors = validationResult(req);
-      const { name, email, title, message } = req;
-      if (!errors.isEmpty()) {
-        res.status(401).json({
-          errors: errors.array(),
-        });
-        return;
-      }
-      res.json({
+  router.post('/api', async function (req, res, next) {
+    req = await helpers.validate('feedback')(req, res, next);
+    const errors = validationResult(req);
+    const { name, email, title, message } = req.body;
+    if (!errors.isEmpty()) {
+      res.status(401).json({
+        errors: errors.array(),
+      });
+      return;
+    } else {
+      res.status(200).json({
         errors: null,
         feedback: {
           name,
@@ -41,6 +38,6 @@ module.exports = (feedbackService) => {
       });
       return;
     }
-  );
+  });
   return router;
 };

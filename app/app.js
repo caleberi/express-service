@@ -17,15 +17,15 @@ app.use(
   cookieSession({ name: 'session124', keys: ['q4tgfsg4pthk9344@$43', '2390r#!@$!$kdmbksmbs,f'] })
 );
 
-// TODO : implement template to render indiviual speaker
-// TODO : implement template to render indiviual speaker  detail
-// TODO : render all artwork for each indiviual speaker
+// TODO : implement template to render indiviual speaker ✅
+// TODO : implement template to render indiviual speaker  detail ✅
+// TODO : render all artwork for each indiviual speaker ✅
 // TODO : Create an error page and render it
 // TODO : Create you custom error handler
 // TODO : validate & sanitize  input from forms if error redirect to feedback page with error
 // TODO : create a notification if feedback is saved
 // TODO :  create a REST API to handle  data recieval using JSON
-// TODO : load  pixgrid if only there are artwork
+// TODO : load  pixgrid if only there are artwork ✅
 
 app.use(async (req, res, next) => {
   try {
